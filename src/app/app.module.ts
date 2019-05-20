@@ -2,7 +2,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { PagesModule } from './pages/pages.module';
-import { SharedModule } from './shared/shared.module';
 
 // Rutas Principales
 import { APP_ROUTES } from './routes/app.routes';
@@ -13,12 +12,14 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
 
 // Servicios
-import { SharedService } from './services/shared.service';
-import { SidebarService } from './services/sidebar.service';
+import { ServiceModule } from './services/services.module';
+
+// Temporal
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, RegisterComponent],
-  imports: [BrowserModule, APP_ROUTES, PagesModule, SharedModule],
+  imports: [BrowserModule, APP_ROUTES, PagesModule, FormsModule, ServiceModule],
   providers: [],
   bootstrap: [AppComponent]
 })

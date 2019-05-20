@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 // Components
@@ -10,18 +12,19 @@ import { CardComponent } from './layout/card/card.component';
 
 @NgModule({
   declarations: [
-    NotFoundComponent,
     HeaderComponent,
     SidebarComponent,
     BreadcrumbsComponent,
+    NotFoundComponent,
     CardComponent
   ],
   exports: [
     HeaderComponent,
     SidebarComponent,
     BreadcrumbsComponent,
+    NotFoundComponent,
     CardComponent
   ],
-  imports: [FormsModule]
+  imports: [FormsModule, RouterModule, CommonModule]
 })
 export class SharedModule {}
