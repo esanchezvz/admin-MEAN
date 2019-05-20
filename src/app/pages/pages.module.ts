@@ -16,6 +16,8 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 // Temporal
 import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.component';
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { IncrementadorComponent } from '../components/incrementador/incrementado
     Graficas1Component,
     IncrementadorComponent,
     GraficoDonaComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromesasComponent,
+    RxjsComponent
   ],
   exports: [DashboardComponent, ProgressComponent, Graficas1Component],
   imports: [FormsModule, SharedModule, PAGES_ROUTES, ChartsModule]
