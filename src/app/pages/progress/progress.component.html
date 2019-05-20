@@ -1,0 +1,45 @@
+<app-card>
+  <h4 class="card-title">Barra de Progreso</h4>
+  <div class="progress">
+    <div
+      class="progress-bar progress-bar-striped progress-bar-animated"
+      role="progressbar"
+      [attr.aria-valuenow]="porcentaje1"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [style.width]="porcentaje1 + '%'"
+    ></div>
+  </div>
+  <br />
+  <div class="progress">
+    <div
+      class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+      role="progressbar"
+      [attr.aria-valuenow]="porcentaje2"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [style.width]="porcentaje2 + '%'"
+    ></div>
+  </div>
+</app-card>
+
+<div class="row">
+  <div class="col-6">
+    <app-card>
+      <app-incrementador
+        titulo="Progress Azul"
+        [porcentaje]="porcentaje1"
+        (valueChange)="porcentaje1 = $event"
+      ></app-incrementador>
+    </app-card>
+  </div>
+  <div class="col-6">
+    <app-card>
+      <app-incrementador
+        titulo="Progress Verde"
+        [porcentaje]="porcentaje2"
+        (valueChange)="porcentaje2 = $event"
+      ></app-incrementador>
+    </app-card>
+  </div>
+</div>
