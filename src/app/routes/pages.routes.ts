@@ -10,12 +10,16 @@ import { AccountSettingsComponent } from '../pages/account-settings/account-sett
 import { PromesasComponent } from '../pages/promesas/promesas.component';
 import { RxjsComponent } from '../pages/rxjs/rxjs.component';
 
+// Guards
+import { LoginGuard } from '../services/services.index';
+
 // Components
 
 const pagesRoutes: Routes = [
   {
     path: '',
     component: PagesComponent,
+    canActivate: [LoginGuard],
     children: [
       {
         path: 'dashboard',

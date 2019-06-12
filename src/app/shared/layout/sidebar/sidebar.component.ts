@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarService } from 'src/app/services/services.index';
+import {
+  SidebarService,
+  UsuarioService
+} from 'src/app/services/services.index';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,8 +10,12 @@ import { SidebarService } from 'src/app/services/services.index';
   styles: []
 })
 export class SidebarComponent implements OnInit {
-  // tslint:disable-next-line: variable-name
-  constructor(public _sideBarService: SidebarService) {}
+  constructor(
+    // tslint:disable-next-line: variable-name
+    public _sideBarService: SidebarService,
+    // tslint:disable-next-line: variable-name
+    public _userService: UsuarioService
+  ) {}
 
   ngOnInit() {}
 }

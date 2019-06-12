@@ -5,7 +5,11 @@
 >
   <div class="login-box card">
     <div class="card-body">
-      <form class="form-horizontal form-material" (ngSubmit)="login()">
+      <form
+        #form="ngForm"
+        class="form-horizontal form-material"
+        (ngSubmit)="login(form)"
+      >
         <a href="javascript:void(0)" class="text-center db"
           ><img src="assets/images/logo-icon.png" alt="Home"/><br /><img
             src="assets/images/logo-text.png"
@@ -15,20 +19,41 @@
           <div class="col-xs-12">
             <input
               class="form-control"
-              type="text"
-              required=""
-              placeholder="Usuario"
+              [ngModel]="email"
+              name="email"
+              type="email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              required
+              placeholder="Correo Electrónico"
             />
+            <small
+              class="text-danger"
+              *ngIf="form.submitted && form.controls.email.errors?.required"
+              >Campo Requerido
+            </small>
+
+            <small
+              class="text-danger"
+              *ngIf="form.submitted && form.controls.email.errors?.pattern"
+              >Debe ser correo válido
+            </small>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
             <input
               class="form-control"
+              ngModel
+              name="password"
               type="password"
-              required=""
+              required
               placeholder="Contraseña"
             />
+            <small
+              class="text-danger"
+              *ngIf="form.submitted && form.controls.password.errors?.required"
+              >Campo Requerido</small
+            >
           </div>
         </div>
         <div class="form-group row">
@@ -36,6 +61,8 @@
             <div class="checkbox checkbox-primary pull-left p-t-0">
               <input
                 id="checkbox-signup"
+                [(ngModel)]="recordar"
+                name="recordar"
                 type="checkbox"
                 class="filled-in chk-col-light-blue"
               />
@@ -62,29 +89,22 @@
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
             <div class="social">
-              <a
-                href="javascript:void(0)"
-                class="btn  btn-facebook"
-                data-toggle="tooltip"
-                title="Login con Facebook"
-              >
-                <i aria-hidden="true" class="fa fa-facebook"></i>
-              </a>
-              <a
-                href="javascript:void(0)"
+              <button
+                type="button"
+                id="btnGoogle"
                 class="btn btn-googleplus"
                 data-toggle="tooltip"
                 title="Login con Google"
               >
                 <i aria-hidden="true" class="fa fa-google-plus"></i>
-              </a>
+              </button>
             </div>
           </div>
         </div>
         <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
             No tienes una cuenta?
-            <a href="pages-register2.html" class="text-primary m-l-5"
+            <a routerLink="/register" class="text-primary m-l-5"
               ><b>Regístrate</b></a
             >
           </div>
