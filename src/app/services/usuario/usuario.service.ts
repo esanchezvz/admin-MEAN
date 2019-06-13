@@ -5,6 +5,7 @@ import { URL_SERVICIOS } from 'src/app/config/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { ImgUploadService } from '../shared/img-upload.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,12 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor(public http: HttpClient, public router: Router) {
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    // tslint:disable-next-line: variable-name
+    public _uploadImgService: ImgUploadService
+  ) {
     this.loadStorage();
   }
 
@@ -73,6 +79,18 @@ export class UsuarioService {
     );
   }
 
+  actulizarUsuario(user: Usuario) {
+    const url = `${URL_SERVICIOS}/usuario/${user._id}?token=${this.token}`;
+    return this.http.put(url, user).pipe(
+      map((res: any) => {
+        // console.log(res);
+        this.saveToStorage(res.usuario._id, this.token, res.usuario);
+        swal('Usuario Actualizado', res.usuario.nombre, 'success');
+        return true;
+      })
+    );
+  }
+
   isLoggedIn() {
     return this.token !== null ? true : false;
   }
@@ -85,5 +103,19 @@ export class UsuarioService {
       this.token = null;
       this.usuario = null;
     }
+  }
+
+  updateImg(img: File, id: string) {
+    this._uploadImgService
+      .subirArchivo(img, 'usuarios', id)
+      .then((res: any) => {
+        this.usuario.img = res.usuario.img;
+        swal('Imagen Actualizada', res.usuario.nombre, 'success');
+        this.saveToStorage(id, this.token, this.usuario);
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 }

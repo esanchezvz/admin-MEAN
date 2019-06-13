@@ -12,6 +12,7 @@ import { RxjsComponent } from '../pages/rxjs/rxjs.component';
 
 // Guards
 import { LoginGuard } from '../services/services.index';
+import { ProfileComponent } from '../pages/profile/profile.component';
 
 // Components
 
@@ -46,6 +47,11 @@ const pagesRoutes: Routes = [
         path: 'account-settings',
         component: AccountSettingsComponent,
         data: { titulo: 'Ajustes' }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: { titulo: 'Perfil' }
       },
       { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
     ]

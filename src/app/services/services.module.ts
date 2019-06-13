@@ -7,6 +7,7 @@ import { SidebarService } from './shared/sidebar.service';
 import { SettingsService } from './settings/settings.service';
 import { SharedService } from './shared/shared.service';
 import { UsuarioService } from './usuario/usuario.service';
+import { ImgUploadService } from './shared/img-upload.service';
 
 // Guards
 import { LoginComponent } from '../login/login.component';
@@ -19,7 +20,8 @@ import { LoginComponent } from '../login/login.component';
     SettingsService,
     SharedService,
     UsuarioService,
-    LoginComponent
+    LoginComponent,
+    ImgUploadService
   ]
 })
 export class ServiceModule {}

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { PipesModule } from '../pipes/pipes.module';
 
 // Components
 import { HeaderComponent } from './layout/header/header.component';
@@ -25,6 +26,6 @@ import { CardComponent } from './layout/card/card.component';
     NotFoundComponent,
     CardComponent
   ],
-  imports: [FormsModule, RouterModule, CommonModule]
+  imports: [FormsModule, RouterModule, CommonModule, PipesModule]
 })
 export class SharedModule {}
