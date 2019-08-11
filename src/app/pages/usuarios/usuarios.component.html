@@ -1,0 +1,100 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <input
+          (keyup)="buscarUsuario($event.target.value)"
+          type="text"
+          class="form-control"
+          placeholder="Buscar usuario..."
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="loading" class="row animated fadeIn">
+  <div class="col-12">
+    <div class="alert alert-warning text-center">
+      <b>Cargando</b>
+      <br />
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br />
+      <span>Espere por favor</span>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading" class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">
+          Usuarios Registrados (<small>{{ total | number }}</small
+          >)
+        </h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Correo</th>
+              <th>Nombre</th>
+              <th>Role</th>
+              <th>Auth</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of usuarios">
+              <!-- TODO: implementar ng-for -->
+              <td>
+                <img
+                  [src]="user.img | imagen"
+                  [alt]="user.name"
+                  class="img-fluid table-img img-circle"
+                />
+              </td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.nombre }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                <label
+                  class="label"
+                  [ngClass]="{
+                    'label-danger': user.google,
+                    'label-info': !user.google
+                  }"
+                >
+                  {{ user.google ? 'Google' : 'Normal' }}
+                </label>
+              </td>
+              <td>
+                <button class="btn btn-dark">
+                  <i class="fa fa-save"></i>
+                </button>
+                <button class="btn btn-danger">
+                  <i class="fa fa-trash-o"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button
+          [disabled]="desde <= 0"
+          (click)="changePage(-5)"
+          class="btn btn-secondary"
+        >
+          Anteriores
+        </button>
+        <button
+          [disabled]="usuarios.length < 5"
+          (click)="changePage(5)"
+          class="btn btn-secondary"
+        >
+          Siguientes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
